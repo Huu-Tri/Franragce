@@ -1,0 +1,83 @@
+﻿@model fragrance.Models.user_order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>user_order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.acc_user.name_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acc_user.name_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.receiver_oder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.receiver_oder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status_order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status_order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address_order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address_order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone_order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone_order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.action_order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_order }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

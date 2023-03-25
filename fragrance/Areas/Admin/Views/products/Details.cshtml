@@ -1,0 +1,115 @@
+﻿@model fragrance.Models.product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.collection_child.name_c_child)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collection_child.name_c_child)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product_type.name_prt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_type.name_prt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volume_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volume_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amount_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amount_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desc_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.notes_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.notes_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tips_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tips_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status_pr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status_pr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_pr }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
