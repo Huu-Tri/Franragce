@@ -250,3 +250,17 @@ footer{
 .order_confirm span{
     font-weight: bolder
 }
+.user_login{
+    margin-top :100px;
+}
+.register_input{
+    width: 100%;
+}
+.footer_map{
+    width: 100%;
+    height: 400px;
+}
+.row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}

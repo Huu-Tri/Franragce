@@ -29,7 +29,7 @@ namespace fragrance.Controllers
             {
                 db.acc_user.Add(acc_user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login", "User");
             }
 
             return View(acc_user);
