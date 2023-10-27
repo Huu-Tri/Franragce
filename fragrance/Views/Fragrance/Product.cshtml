@@ -3,72 +3,115 @@
 @{
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<fragrance.Models.product> relateds = ViewBag.Related;
 }
 
-
-<div class="row justify-content-center">
-    <div class="product_detail-col col-lg-5 col-md-5 col-sm-12">
-        <img class="product_item-img" src="~/Assets/Images/Products/@Html.DisplayFor(model => model.image_pr)"/>
-    </div>
-    <div class="product_detail-col col-lg-4 col-md-4 col-sm-12">
-        <h2 class="text-uppercase">@Html.DisplayFor(model => model.name_pr)</h2>
-        <h5 class="product_detail-desc">@Html.DisplayFor(model => model.desc_pr)<br /></h5>
-      @*  <h6>@Html.DisplayNameFor(model => model.created_at) @Html.DisplayFor(model => model.created_at)</h6>*@
-        <div class="product_detail-price border d-flex justify-content-between p-4">
-            <span>@Html.DisplayNameFor(model => model.volume_pr) @Html.DisplayFor(model => model.volume_pr) ml</span>
-            <span>@Html.DisplayNameFor(model => model.price_pr) @Html.DisplayFor(model => model.price_pr) $</span>
-        </div>
-        <div class="text-center p-4">
-            <a class="btn-add-cart btn btn-dark text-uppercase"
-               href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })"
-               role="button">
-                Add to cart
-            </a>
-           
-        </div>
-        <div id="accordion">
-            <div class="card  text-dark">
-                <div class="card-header text-uppercase">
-                    <a class="card-header-btn btn collapsed" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="false">
-                        <span>description</span>
-                        <span><i class="bi bi-chevron-down"></i></span>
-                    </a>
-                </div>
-                <div id="collapseOne" class="collapse" data-bs-parent="#accordion" style="">
-                    <div class="card-body">
-                        @Html.DisplayFor(model => model.desc_pr)
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header text-uppercase">
-                    <a class="card-header-btn btn collapsed" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false">
-                        <span>@Html.DisplayNameFor(model => model.notes_pr)</span>
-                        <span><i class="bi bi-chevron-down"></i></span>
-                    </a>
-                </div>
-                <div id="collapseTwo" class="collapse" data-bs-parent="#accordion" style="">
-                    <div class="card-body">
-                        @Html.DisplayFor(model => model.notes_pr)
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header text-uppercase">
-                    <a class="card-header-btn btn collapsed" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false">
-                        <span>@Html.DisplayNameFor(model => model.tips_pr)</span>
-                        <span><i class="bi bi-chevron-down"></i></span>
-                    </a>
-                </div>
-                <div id="collapseThree" class="collapse" data-bs-parent="#accordion" style="">
-                    <div class="card-body">
-                        @Html.DisplayFor(model => model.tips_pr)
-                    </div>
+<div class="breadcrumb-section single-artcile-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>See more Details</p>
+                    <h1>@Html.DisplayFor(model => model.name_pr)</h1>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
-
+<!-- end breadcrumb section -->
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="~/Assets/Images/Products/@Html.DisplayFor(model => model.image_pr)" alt="">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content">
+                    <h3>@Html.DisplayFor(model => model.name_pr)</h3>
+                    <p class="single-product-pricing">
+                        <span>@Html.DisplayNameFor(model => model.volume_pr) @Html.DisplayFor(model => model.volume_pr)</span>
+                        $@Html.FormatValue(Model.price_pr, "{0:#,##0}")
+                    </p>
+                    <p>@Model.desc_pr</p>
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header text-uppercase">
+                                <a class="card-header-btn btn collapsed" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false">
+                                    <span>@Html.DisplayNameFor(model => model.notes_pr)</span>
+                                    <span><i class="bi bi-chevron-down"></i></span>
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion" style="">
+                                <div class="card-body">
+                                    <p>@Model.notes_pr</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header text-uppercase">
+                                <a class="card-header-btn btn collapsed" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false">
+                                    <span>@Html.DisplayNameFor(model => model.tips_pr)</span>
+                                    <span><i class="bi bi-chevron-down"></i></span>
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-bs-parent="#accordion" style="">
+                                <div class="card-body">
+                                    <p>@Model.tips_pr</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-product-form">
+                        <a  id="addtocart"
+                               href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })"
+                               role="button" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        <p><strong>Categories: </strong>@Model.product_type.name_prt</p>
+                    </div>
+                    <h4>Share:</h4>
+                    <ul class="product-share">
+                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                        <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single product -->
+<!-- more products -->
+@if(relateds.Any())
+{
+<div class="more-products mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Related</span> Products</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var pro in relateds)
+            {
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="@Url.Action("Product","Fragrance", new { id = pro.id_pr})"><img src="~/Assets/Images/Products/@pro.image_pr" alt=""></a>
+                        </div>
+                        <h3>@pro.name_pr</h3>
+                        <p class="product-price"><span>@pro.volume_pr ml</span> @Html.FormatValue(pro.price_pr, "{0:#,##0}")$ </p>
+                        <a id="addtocart" href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+}
+<!-- end more products -->

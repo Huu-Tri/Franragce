@@ -1,6 +1,7 @@
 ﻿using fragrance.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,20 +26,30 @@ namespace fragrance.Controllers
             }
             return CartList;
         }
-        public ActionResult AddCart(int ms, string url)
+        public ActionResult AddCart(int ms, string url, int qty = 1)
         {
 
             List<Cart> CartList = GetCarts();
 
             Cart sp = CartList.Find(n => n.iPro == ms);
+            var productQty = db.products.Where(x => x.id_pr == ms).FirstOrDefault().amount_pr;
             if (sp == null)
             {
                 sp = new Cart(ms);
+                sp.iQuantity = qty;
                 CartList.Add(sp);
             }
             else
             {
-                sp.iQuantity++;
+                if(productQty > (sp.iQuantity + qty))
+                {
+                    sp.iQuantity += qty;
+				}
+                else
+                {
+                    ViewBag.MessageAddCart = "Not add to cart error";
+                }
+                  
             }
             return Redirect(url);
         }

@@ -1,0 +1,59 @@
+﻿@model fragrance.Models.acc_user
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>acc_user</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_user }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

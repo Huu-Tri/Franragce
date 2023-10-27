@@ -1,0 +1,186 @@
+﻿
+@using fragrance.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2 class="text-uppercase text-center p-5">your cart</h2>
+<div class="row justify-content-center carts">
+    <div class="col-lg-5 col-md-7 col-sm-12 bg-white">
+        @foreach (var item in Model)
+        {
+            <div class="d-flex bg-light mb-3 cart_pro-item">
+                <div>
+                    <a class="a_href" href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
+                        <img src="~/Assets/Images/Products/@item.sImagepr" style="width:180px;"/>
+                    </a>
+                </div>
+                <div class="d-flex flex-column justify-content-between p-4">
+                    <a class="a_href" href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
+                        <h4 class="text-capitalize">@item.sNamepr</h4>
+                    </a>
+
+                    @using (Html.BeginForm("UpdateCart", "Carts", new { @iPro = item.iPro }))
+                    {
+
+                        <div class="cart_price">
+                            <span>
+                                Quantity: <input class="cart_p_quantity" type="number" min="1" max="10" name="quantity" value="@item.iQuantity" />
+                            </span>
+                            <br />
+                            <span>Price: @string.Format("{0:#,##0,0}", item.dPricepr)</span>
+                            <br />
+                            <span>Total: @string.Format("{0:#,##0,0}", item.dSumMoney) </span>
+                        </div>
+                        <div class="cart_update-delete d-flex flex-column justify-content-between p-4">
+                            <button class="btn btn-outline-danger"><i class="bi bi-x"></i> @Html.ActionLink(" ", "DeleteProFromCart", new { @iPro = item.iPro }, new { @class = "a_href" })</button>
+                            <button type="submit" class="btn btn-outline-info"><i class="bi bi-arrow-clockwise"></i></button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        }
+
+
+
+
+        @*@Html.ActionLink("Order", "Order", "Carts")*@
+
+
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-12">
+        <div class="d-flex justify-content-between bg-light p-4">
+            <span>Quantity: @string.Format("{0:#,##0}", ViewBag.SumCart)</span>
+            <span>Total: @string.Format("{0:#,##0,0}", ViewBag.SumCartMoney)$</span>
+
+            <div>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Delete Cart
+                </button>
+            </div>
+        </div>
+        <div class="d-flex flex-column align-content-center">
+            @{
+                acc_user u = (acc_user)Session["acc_user"];
+            }
+            @if (Session["User_Email"] != null)
+            {
+                <div class="order_info d-flex justify-content-center">
+
+                    <div class="order_info-info">
+                        <h3 class="text-uppercase text-center">order infor</h3>
+                        @using (Html.BeginForm("Order", "Carts"))
+                        {
+                            @Html.ValidationSummary(true)
+                            <div class="info-item pr-xl-5">
+                                <span>User: @u.name_user</span>
+                                <span>Email: @u.email_user</span>
+                                <span>Phone: @u.phone_user</span>
+                                <span>order date: @DateTime.Now.ToShortDateString()</span>
+                                <span>delivery date: before @DateTime.Now.AddDays(7).ToShortDateString()</span>
+                            </div>
+
+                            <div class="input_effect">
+                                <label class="label_input label_input-recevier">Receiver</label>
+                                <input class="cart_input cart_input-recevier" type="text" name="receiver_oder" placeholder="" />
+                            </div>
+                            <div class="input_effect">
+                                <label class="label_input label_input-address">Address</label>
+                                <input class="cart_input cart_input-address" type="text" name="address_order" placeholder="" />
+                            </div>
+
+                            <div class="input_effect">
+                                <label class="label_input label_input-phone">Phone</label>
+                                <input class="cart_input cart_input-phone" type="tel" name="phone_order" placeholder="" />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn_order" type="submit">Order</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="login_cart p-lg-5 text-center text-uppercase">
+                    <h3 class="pb-4">Register or login to be able to order</h3>
+                    <a href="@Url.Action("Login","User")">Sign in</a>
+                    <a href="@Url.Action("Register","User")">Sign up</a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Your Cart</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure about that...
+            </div>
+
+            <!-- Modal footer -->
+            <div class="d-flex justify-content-between modal-footer">
+                <button class="btn btn-danger"><span>@Html.ActionLink("Delete Cart", "DeleteCart")</span></button>
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    const input = document.querySelector('.cart_input-recevier');
+    const label = document.querySelector('.label_input-recevier');
+
+    input.addEventListener('focus', () => {
+        label.classList.add('hidden');
+    });
+
+    input.addEventListener('blur', () => {
+        if (input.value === '') {
+            label.classList.remove('hidden');
+        }
+    });
+
+    const input2 = document.querySelector('.cart_input-address');
+    const label2 = document.querySelector('.label_input-address');
+
+    input2.addEventListener('focus', () => {
+        label2.classList.add('hidden');
+    });
+
+    input2.addEventListener('blur', () => {
+        if (input2.value === '') {
+            label2.classList.remove('hidden');
+        }
+    });
+
+    const input3 = document.querySelector('.cart_input-phone');
+    const label3 = document.querySelector('.label_input-phone');
+
+    input3.addEventListener('focus', () => {
+        label3.classList.add('hidden');
+    });
+
+    input3.addEventListener('blur', () => {
+        if (input3.value === '') {
+            label3.classList.remove('hidden');
+        }
+    });
+</script>

@@ -1,5 +1,6 @@
-﻿<li class="nav-item">
+﻿@*<li class="nav-item">
     <a class="nav-link cart-item" href="@Url.Action("Cart","Carts")">
     <i class="bi bi-cart"></i>
     <span class="numcart">@ViewBag.SumCart</span></a>
-</li>
+</li>*@
+<a class="shopping-cart" href="@Url.Action("Cart","Carts")"><i class="fas fa-shopping-cart"></i>@ViewBag.SumCart</a>

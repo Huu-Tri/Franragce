@@ -145,16 +145,19 @@
     <Compile Include="Areas\Admin\Controllers\Test2Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\user_orderController.cs" />
+    <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\FragranceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DTO\UserEdit.cs" />
+    <Compile Include="DTO\UserResponse.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202302151340176_AddUniqueConstraintsToAdmin.cs" />
-    <Compile Include="Migrations\202302151340176_AddUniqueConstraintsToAdmin.designer.cs">
-      <DependentUpon>202302151340176_AddUniqueConstraintsToAdmin.cs</DependentUpon>
+    <Compile Include="Migrations\202310171801231_create-menu-table.cs" />
+    <Compile Include="Migrations\202310171801231_create-menu-table.designer.cs">
+      <DependentUpon>202310171801231_create-menu-table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\acc_user.cs" />
@@ -165,6 +168,7 @@
     <Compile Include="Models\collection_child.cs" />
     <Compile Include="Models\contact.cs" />
     <Compile Include="Models\FragranceDbContext.cs" />
+    <Compile Include="Models\menu.cs" />
     <Compile Include="Models\message.cs" />
     <Compile Include="Models\order_details.cs" />
     <Compile Include="Models\product.cs" />
@@ -1860,8 +1864,74 @@
     <Content Include="Assets\Admin\vendor\jquery\jquery.min.js" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Assets\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Assets\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Assets\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Assets\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Assets\bootstrap\css\bootstrap.css" />
+    <Content Include="Assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Assets\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Assets\bootstrap\js\bootstrap.js" />
+    <Content Include="Assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\css\all.min.css" />
+    <Content Include="Assets\css\animate.css" />
+    <Content Include="Assets\css\magnific-popup.css" />
+    <Content Include="Assets\css\main.css" />
+    <Content Include="Assets\css\meanmenu.min.css" />
+    <Content Include="Assets\css\owl.carousel.css" />
+    <Content Include="Assets\css\responsive.css" />
+    <Content Include="Assets\css\scss\pages\_404.css" />
     <Content Include="Assets\Images\bglogin.jpg" />
     <Content Include="Assets\Images\Homepage\pngtree.png" />
+    <Content Include="Assets\img\1.jpg" />
+    <Content Include="Assets\img\a.jpg" />
+    <Content Include="Assets\img\abt.jpg" />
+    <Content Include="Assets\img\avaters\avatar1.png" />
+    <Content Include="Assets\img\avaters\avatar2.png" />
+    <Content Include="Assets\img\avaters\avatar3.png" />
+    <Content Include="Assets\img\breadcrumb-bg.jpg" />
+    <Content Include="Assets\img\company-logos\1.png" />
+    <Content Include="Assets\img\company-logos\2.png" />
+    <Content Include="Assets\img\company-logos\3.png" />
+    <Content Include="Assets\img\company-logos\4.png" />
+    <Content Include="Assets\img\company-logos\5.png" />
+    <Content Include="Assets\img\dd.jpg" />
+    <Content Include="Assets\img\favicon.png" />
+    <Content Include="Assets\img\feature-bg.jpg" />
+    <Content Include="Assets\img\hero-bg-2.jpg" />
+    <Content Include="Assets\img\hero-bg-3.jpg" />
+    <Content Include="Assets\img\hero-bg.jpg" />
+    <Content Include="Assets\img\homepage-bg-pattern.png" />
+    <Content Include="Assets\img\latest-news\news-bg-1.jpg" />
+    <Content Include="Assets\img\latest-news\news-bg-2.jpg" />
+    <Content Include="Assets\img\latest-news\news-bg-3.jpg" />
+    <Content Include="Assets\img\latest-news\news-bg-4.jpg" />
+    <Content Include="Assets\img\latest-news\news-bg-5.jpg" />
+    <Content Include="Assets\img\latest-news\news-bg-6.jpg" />
+    <Content Include="Assets\img\logo.png" />
+    <Content Include="Assets\img\products\product-img-1.jpg" />
+    <Content Include="Assets\img\products\product-img-2.jpg" />
+    <Content Include="Assets\img\products\product-img-3.jpg" />
+    <Content Include="Assets\img\products\product-img-4.jpg" />
+    <Content Include="Assets\img\products\product-img-5.jpg" />
+    <Content Include="Assets\img\products\product-img-6.jpg" />
+    <Content Include="Assets\img\team\team-1.jpg" />
+    <Content Include="Assets\img\team\team-2.jpg" />
+    <Content Include="Assets\img\team\team-3.jpg" />
+    <Content Include="Assets\js\form-validate.js" />
+    <Content Include="Assets\js\jquery-1.11.3.min.js" />
+    <Content Include="Assets\js\jquery.countdown.js" />
+    <Content Include="Assets\js\jquery.isotope-3.0.6.min.js" />
+    <Content Include="Assets\js\jquery.magnific-popup.min.js" />
+    <Content Include="Assets\js\jquery.meanmenu.min.js" />
+    <Content Include="Assets\js\main.js" />
+    <Content Include="Assets\js\owl.carousel.min.js" />
+    <Content Include="Assets\js\sticker.js" />
+    <Content Include="Assets\js\waypoints.js" />
+    <Content Include="Assets\webfonts\fa-brands-400.svg" />
+    <Content Include="Assets\webfonts\fa-regular-400.svg" />
+    <Content Include="Assets\webfonts\fa-solid-900.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2100,11 +2170,60 @@
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutPageLogin.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Test.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Areas\Manage\Views\web.config" />
+    <Content Include="Assets\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Assets\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Assets\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Assets\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Assets\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Assets\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Assets\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Assets\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Assets\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Assets\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Assets\css\scss\base\_mixins.scss" />
+    <Content Include="Assets\css\scss\base\_typography.scss" />
+    <Content Include="Assets\css\scss\base\_variables.scss" />
+    <Content Include="Assets\css\scss\common\_common.scss" />
+    <Content Include="Assets\css\scss\common\_footer.scss" />
+    <Content Include="Assets\css\scss\common\_header.scss" />
+    <Content Include="Assets\css\scss\common\_hover.scss" />
+    <Content Include="Assets\css\scss\main.scss" />
+    <Content Include="Assets\css\scss\pages\_404.scss" />
+    <Content Include="Assets\css\scss\pages\_about.scss" />
+    <Content Include="Assets\css\scss\pages\_contact.scss" />
+    <Content Include="Assets\css\scss\pages\_shop.scss" />
+    <Content Include="Assets\css\scss\prepros-6.config" />
+    <Content Include="Assets\css\scss\sections\_about.scss" />
+    <Content Include="Assets\css\scss\sections\_cart-banner.scss" />
+    <Content Include="Assets\css\scss\sections\_hero.scss" />
+    <Content Include="Assets\css\scss\sections\_list.scss" />
+    <Content Include="Assets\css\scss\sections\_news.scss" />
+    <Content Include="Assets\css\scss\sections\_shop-banner.scss" />
+    <Content Include="Assets\css\scss\sections\_testimonials.scss" />
+    <Content Include="Assets\webfonts\fa-brands-400.eot" />
+    <Content Include="Assets\webfonts\fa-brands-400.eot_" />
+    <Content Include="Assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="Assets\webfonts\fa-brands-400.woff" />
+    <Content Include="Assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="Assets\webfonts\fa-regular-400.eot" />
+    <Content Include="Assets\webfonts\fa-regular-400.eot_" />
+    <Content Include="Assets\webfonts\fa-regular-400.ttf" />
+    <Content Include="Assets\webfonts\fa-regular-400.woff" />
+    <Content Include="Assets\webfonts\fa-regular-400.woff2" />
+    <Content Include="Assets\webfonts\fa-solid-900.eot" />
+    <Content Include="Assets\webfonts\fa-solid-900.eot_" />
+    <Content Include="Assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="Assets\webfonts\fa-solid-900.woff" />
+    <Content Include="Assets\webfonts\fa-solid-900.woff2" />
+    <None Include="Properties\PublishProfiles\Perfumer - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -2134,10 +2253,18 @@
     <Content Include="Views\Carts\CartPartial.cshtml" />
     <Content Include="Views\Carts\Cart.cshtml" />
     <Content Include="Views\Carts\OrderConfirm.cshtml" />
+    <Content Include="Views\Fragrance\Collections.cshtml" />
+    <Content Include="Views\Fragrance\SliderPartial.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\Fragrance\Shop.cshtml" />
+    <Content Include="Views\User\EditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Manage\Controllers\" />
+    <Folder Include="Areas\Manage\Data\" />
+    <Folder Include="Areas\Manage\Views\Shared\" />
     <Folder Include="Assets\Images\Collection\" />
     <Folder Include="Assets\Images\Products\" />
     <Folder Include="Assets\Images\Product_type\" />
@@ -2152,12 +2279,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202302151340176_AddUniqueConstraintsToAdmin.resx">
-      <DependentUpon>202302151340176_AddUniqueConstraintsToAdmin.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202310171801231_create-menu-table.resx">
+      <DependentUpon>202310171801231_create-menu-table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

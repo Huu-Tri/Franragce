@@ -1,0 +1,111 @@
+﻿@model fragrance.DTO.UserEdit
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-section hero-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <h1 class="text-uppercase"><span class="text-warning">@Model.Username</span> profile</h1>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <table class="w-100">
+                                @Html.ValidationSummary(true, "", new { @class = "text-warning list-unstyled" })
+                                @Html.HiddenFor(model => model.Id)
+
+                                <tr>
+                                    <td><p>@Html.LabelFor(model => model.Username)</p></td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "user-input text-warning font-weight-bold px-3 mb-3" } })
+                                        <br />
+                                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-warning" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>@Html.LabelFor(model => model.Email)</p></td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "user-input text-warning font-weight-bold px-3 mb-3" } })
+                                        <br />
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-warning" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>@Html.LabelFor(model => model.Phone)</p></td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "user-input text-warning font-weight-bold px-3 mb-3" } })
+                                        <br />
+                                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-warning" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>@Html.LabelFor(model => model.Password)</p></td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "user-input text-warning font-weight-bold px-3 mb-3", @placeholder = "Enter password" } })
+                                        <br />
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-warning" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><p>@Html.LabelFor(model => model.ConfirmPassword)</p></td>
+                                    <td>
+                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "user-input text-warning font-weight-bold px-3 mb-3", @placeholder = "Enter confirm password" } }); 
+                                        <br />
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-warning" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="submit" value="Save" class="" />
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@*    <div class="container">
+        <br />
+        @foreach (var item in @Model.user_order)
+        {
+            <p>@item.receiver_oder</p>
+            <p>@item.status_order</p>
+            <p>@item.action_order</p>
+            <p>@item.address_order</p>
+            <p>@item.phone_order</p>
+            <p>@item.created_at</p>
+
+            foreach (var detail in item.order_details)
+            {
+                <p>@detail.product.name_pr</p>
+                <p>@detail.user_order.acc_user.email_user</p>
+            }
+        }
+    </div>
+*@
+
+<style>
+    .user-input {
+        background-color: transparent;
+        outline: none;
+        border-radius: 50px;
+        overflow: hidden;
+        font-size: 16px;
+        letter-spacing: 2px;
+        width: 300px;
+    }
+    table p{
+        float: left;
+    }
+</style>

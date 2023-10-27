@@ -38,7 +38,11 @@ namespace fragrance.Models
         [DisplayName("Created")]
         public DateTime? created_at { get; set; } = DateTime.Now;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		/*[DisplayName("Menu")]
+		public int? id_menu { get; set; }*/
+        /*[ForeignKey("id_menu")]
+		public virtual menu menu { get; set; }*/
+
         public virtual ICollection<product> products { get; set; }
     }
 }

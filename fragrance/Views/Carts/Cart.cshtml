@@ -7,36 +7,46 @@
 }
 
 
+<div class="breadcrumb-section news-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1 class="text-uppercase">your cart</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h2 class="text-uppercase text-center p-5">your cart</h2>
-<div class="row justify-content-center carts">
+<div class="row justify-content-center carts mt-100 mb-100">
     <div class="col-lg-5 col-md-7 col-sm-12 bg-white">
         @foreach (var item in Model)
         {
-            <div class="d-flex bg-light mb-3 cart_pro-item">
+            <div class="d-flex position-relative bg-light mb-3 cart_pro-item">
                 <div>
-                    <a class="a_href" href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
-                        <img src="~/Assets/Images/Products/@item.sImagepr" style="width:180px;"/>
+                    <a href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
+                        <img src="~/Assets/Images/Products/@item.sImagepr" style="width:180px;" />
                     </a>
                 </div>
-                <div class="d-flex flex-column justify-content-between p-4">
-                    <a class="a_href" href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
+                <div class="d-flex flex-column justify-content-around">
+                    <a href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
                         <h4 class="text-capitalize">@item.sNamepr</h4>
                     </a>
 
                     @using (Html.BeginForm("UpdateCart", "Carts", new { @iPro = item.iPro }))
                     {
-
-                        <div class="cart_price">
-                            <span>
-                                Quantity: <input class="cart_p_quantity" type="number" min="1" max="10" name="quantity" value="@item.iQuantity" />
+                        <div>
+                            <span style="font-size: 14px !important">
+                                Quantity: <input type="number" min="1" max="10" name="quantity" value="@item.iQuantity" />
                             </span>
                             <br />
-                            <span>Price: @string.Format("{0:#,##0,0}", item.dPricepr)</span>
+                            <span style="font-size: 14px !important">Price: @string.Format("{0:#,##0,0}", item.dPricepr)</span>
                             <br />
-                            <span>Total: @string.Format("{0:#,##0,0}", item.dSumMoney) </span>
+                            <span style="font-size: 14px !important">Total: @string.Format("{0:#,##0,0}", item.dSumMoney) </span>
                         </div>
-                        <div class="cart_update-delete d-flex flex-column justify-content-between p-4">
+                        <div class="position-absolute top-0 end-0 d-flex flex-column h-100 justify-content-between p-4">
                             <button class="btn btn-outline-danger"><i class="bi bi-x"></i> @Html.ActionLink(" ", "DeleteProFromCart", new { @iPro = item.iPro }, new { @class = "a_href" })</button>
                             <button type="submit" class="btn btn-outline-info"><i class="bi bi-arrow-clockwise"></i></button>
                         </div>

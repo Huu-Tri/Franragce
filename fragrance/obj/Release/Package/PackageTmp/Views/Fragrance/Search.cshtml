@@ -1,0 +1,39 @@
+﻿@model IEnumerable<fragrance.Models.product>
+
+@{
+    ViewBag.Title = "Homepage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center p-5 text-uppercase">
+    <h5>search results for <span class="text-info">@ViewBag.Search</span></h5>
+
+</div>
+<div class="list_product row">
+    @foreach (var pro in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 ">
+            <div class="product_item bg-light">
+                <a href="@Url.Action("Product","Fragrance", new { id = pro.id_pr})">
+                    <img class="product_item-img" src="~/Assets/Images/Products/@pro.image_pr" alt="Thumbnail Image 1">
+                    <div class="p-3">
+                        <h5 class="text-capitalize">@pro.name_pr</h5>
+                        <div class="d-flex justify-content-between">
+                            <p>@pro.volume_pr ml</p>
+                            <p>@Html.FormatValue(pro.price_pr, "{0:#,##0}")@*@pro.price_pr*@ $</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-outline-dark"
+                       href="@Url.Action("AddCart","Carts", new { ms = pro.id_pr, url = Request.Url.ToString() })"
+                       role="button">
+                        Add to cart
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>
