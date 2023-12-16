@@ -1,8 +1,0 @@
-﻿@model IEnumerable<fragrance.Models.product_type>
-
-@foreach (var item in Model)
-{
-    <li>
-        <a  class="dropdown-item" href="@Url.Action("TypeProduct","Fragrance", new { id = item.id_prt})">@item.name_prt</a>
-    </li>
-}

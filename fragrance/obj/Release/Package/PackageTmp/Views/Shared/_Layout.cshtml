@@ -6,93 +6,219 @@
     <title>@ViewBag.Title - Fragrance</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="~/Content/Site.css"/>
-    <link rel="icon" href="~/Assets/Images/Homepage/pngtree.png"/>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="icon" href="~/Assets/Images/Homepage/pngtree.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="~/Assets/css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/Assets/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/Assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="~/Assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="~/Assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="~/Assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="~/Assets/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="~/Assets/css/responsive.css">
 </head>
 <body>
     <div id="ontop"></div>
     <a href="#ontop" class="ontop"><i class="bi bi-arrow-up-circle-fill"></i></a>
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container-fluid ">
-            <a class="navbar-brand" href="javascript:void(0)"><img src="~/Assets/Images/Homepage/pngtree.png" width="40" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto  text-uppercase">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Fragrance")">Home</a>
-                    </li>
+    <!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+    <!-- header -->
+    <div class="top-header-area" id="sticker">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a href="@Url.Action("Index", "Fragrance")">
+                                <img src="~/Assets/img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <!-- logo -->
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="current-list-item">
+                                    @Html.ActionLink("SHOP", "Shop", "Fragrance")
+                                </li>
+                                @Html.Action("Menus", "Fragrance")
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            MEN'S FRAGRANCE
-                        </a>
-                        <ul class="dropdown-menu">
-                            @Html.Action("TypeProductMale", "Fragrance")
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            WOMEN'S FRAGRANCE
-                        </a>
-                        <ul class="dropdown-menu">
-                            @Html.Action("TypeProductFamale", "Fragrance")
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">COMMITMENTS</a>
-                    </li>
-                </ul>
-                <div>
-                    <ul class="navbar-nav user-cart">
-                        @*cart here*@
-                        @Html.Action("CartPartial", "Carts")
-                        @if (Session["acc_user"] != null)
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-person-fill"></i>@(Session["User_Name"]?.ToString())</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Link</a></li>
-                                    <li><a class="dropdown-item" href="#">Another link</a></li>
-                                    <li><hr /></li>
-                                    <li><a class="dropdown-item" href="@Url.Action("Logout", "User")">Sign out</a></li>
-                                </ul>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Login","User")"><i class="bi bi-person-fill"></i></a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-
-                @using (Html.BeginForm("Search", "Fragrance", FormMethod.Get))
-                {
-                    <div class="d-flex">
-                        <input class="form-control me-2" name="strSearch" value="@ViewBag.Search" type="text" placeholder="Search" required>
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                                <li class="current-list-item">
+                                    @Html.ActionLink("NEWS", "News", "Fragrance")
+                                </li>
+                                <li>
+                                    <div class="header-icons">
+                                        @Html.Action("CartPartial", "Carts")
+                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        @if (Session["acc_user"] != null)
+                                        {
+                                            <a href="#"><i class="bi bi-person-fill"></i>@(Session["User_Name"]?.ToString())</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="@Url.Action("UserProfile", "User")">Profile</a></li>
+                                                <li><a href="@Url.Action("Logout", "User")">Sign out</a></li>
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Login","User")"><i class="bi bi-person-fill"></i></a>
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                        <div class="mobile-menu"></div>
+                        <!-- menu end -->
                     </div>
-                    
-                    <span class="text-danger">@ViewBag.SearchErr</span>
-
-                }
-
-
-
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+    <!-- end header -->
+    <!-- search area -->
+    <div class="search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                    <div class="search-bar">
+                        <div class="search-bar-tablecell">
+                            <h3>Search For:</h3>
+
+                            @using (Html.BeginForm("Search", "Fragrance", FormMethod.Get))
+                            {
+                                <input type="text" name="strSearch" value="@ViewBag.Search" placeholder="Keywords" required>
+                                <button type="submit">Search <i class="fas fa-search"></i></button>
+                                <span class="text-danger">@ViewBag.SearchErr</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end search area -->
+
     <div class="container-fluid">
         @RenderBody()
     </div>
-    <footer class="bg-dark mt-lg-5">
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        <iframe class="footer_map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.7725940029286!2d106.67328555058639!3d10.980529958356799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1085e2b1c37%3A0x73bfa5616464d0ee!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUaOG7pyBE4bqndSBN4buZdA!5e0!3m2!1svi!2s!4v1679061309726!5m2!1svi!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </footer>
+
+    <!-- footer -->
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box about-widget">
+                        <h2 class="widget-title">About us</h2>
+                        <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">Get in Touch</h2>
+                        <ul>
+                            <li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+                            <li>support@fruitkha.com</li>
+                            <li>+00 111 222 3333</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box pages">
+                        <h2 class="widget-title">Pages</h2>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Shop</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box subscribe">
+                        <h2 class="widget-title">Subscribe</h2>
+                        <p>Subscribe to our mailing list to get the latest updates.</p>
+                        <form action="index.html">
+                            <input type="email" placeholder="Email">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer -->
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <p>
+                        Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
+                        Distributed By - <a href="https://themewagon.com/">Themewagon</a>
+                    </p>
+                </div>
+                <div class="col-lg-6 text-right col-md-12">
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end copyright -->
+    <!-- jquery -->
+    <script src="~/Assets/js/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="~/Assets/js/jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="~/Assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="~/Assets/js/waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="~/Assets/js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="~/Assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="~/Assets/js/jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="~/Assets/js/sticker.js"></script>
+    <!-- main js -->
+    <script src="~/Assets/js/main.js"></script>
     @RenderSection("scripts", required: false)
+    @{
+        if (ViewBag.MessageAddCart != null)
+        {
+            <script>
+                alert(ViewBag.MessageAddCart)
+            </script>
+            ViewBag.MessageAddCart = null;
+        }
+    }
 </body>
 </html>

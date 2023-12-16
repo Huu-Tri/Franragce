@@ -1,5 +1,6 @@
 namespace fragrance.Models
 {
+    using fragrance.DTO;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -18,6 +19,9 @@ namespace fragrance.Models
         [Key]
         public int id_order { get; set; }
 
+        public string code { get; set; }
+        public string payment_method { get; set; }
+        public string payment_status { get; set; }
         [Required]
         [StringLength(100)]
         [DisplayName("Receiver")]
@@ -43,7 +47,7 @@ namespace fragrance.Models
         [Phone]
         public string phone_order { get; set; }
         [DisplayName("Action")]
-        public int action_order { get; set; }
+        public int action_order { get; set; } = (int)OrderAction.Pending;
 
         public int? id_order_user { get; set; }
 

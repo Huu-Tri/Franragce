@@ -31,17 +31,19 @@ namespace fragrance.Models
         [DisplayName("Desc")]
         public string desc_prt { get; set; }
 
-        [StringLength(100)]
+		public bool IsActive { get; set; }
+
+		[StringLength(100)]
         [DisplayName("Gender")]
         public string forgender_prt { get; set; }
 
         [DisplayName("Created")]
         public DateTime? created_at { get; set; } = DateTime.Now;
 
-		/*[DisplayName("Menu")]
-		public int? id_menu { get; set; }*/
-        /*[ForeignKey("id_menu")]
-		public virtual menu menu { get; set; }*/
+        [DisplayName("Menu")]
+        public int id_menu { get; set; }
+        [ForeignKey("id_menu")]
+        public virtual menu menu { get; set; }
 
         public virtual ICollection<product> products { get; set; }
     }

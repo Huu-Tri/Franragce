@@ -1,0 +1,118 @@
+﻿@model fragrance.Models.user_order
+
+@{
+    ViewBag.Title = "OrderDetailByCode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-150"></div>
+<h3 class="text-uppercase text-center">Detail Order <span style="color: darkgoldenrod">@Model.code</span></h3>
+<div class=" m-auto" style="width:80%">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.acc_user.name_user)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.payment_method)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.payment_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.receiver_oder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status_order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address_order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date_order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone_order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.action_order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_at)
+            </th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.acc_user.name_user)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.code)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.payment_method)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.payment_status)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.receiver_oder)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.status_order)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.address_order)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.date_order)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.phone_order)
+            </td>
+            <td>
+                @((fragrance.DTO.OrderAction)Model.action_order)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.created_at)
+            </td>
+            <td>@Model.order_details.Sum(x => x.amount_order_dt)</td>
+            <td>@Model.order_details.Sum(x => x.order_details_total) $</td>
+        </tr>
+
+
+    </table>
+    <h3 class="text-uppercase text-center my-4">List Product Order <span style="color: darkgoldenrod">@Model.code</span></h3>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Curent Price</th>
+                <td>Quantity</td>
+                <th>Total</th>
+            </tr>
+            @foreach (var item in Model.order_details)
+            {
+                <tr>
+                    <td>
+                        <p class="d-flex"><img src="~/Assets/Images/Products/@item.product.image_pr" style="width: 150px; height: 150px; object-fit: cover" /><a href="@Url.Action("Product","Fragrance", new { id = item.product.id_pr})"> @item.product.name_pr</a></p>
+                    </td>
+                    <td>
+                        <p>@item.product.price_pr</p>
+                    </td>
+                    <td>
+                        <p>@item.amount_order_dt</p>
+                    </td>
+                    <td>
+                        <p>@item.order_details_total</p>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

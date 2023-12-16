@@ -46,8 +46,9 @@
                     <div class="main-menu-wrap">
                         <!-- logo -->
                         <div class="site-logo">
-                            <a href="@Url.Action("Index", "Fragrance")">
-                                <img src="~/Assets/img/logo.png" alt="">
+                            <a href="@Url.Action("Index", "Fragrance")" style="display: flex; justify-content: center; align-items: center">
+                                <img src="~/Assets/Images/Homepage/pngtree.png" style="height: 40px" alt="">
+                                <span style="font-size: 20px; color: white; font-weight: bold"> Fragrance</span>
                             </a>
                         </div>
                         <!-- logo -->
@@ -57,17 +58,10 @@
                                 <li class="current-list-item">
                                     @Html.ActionLink("SHOP", "Shop", "Fragrance")
                                 </li>
+                                @Html.Action("Menus", "Fragrance")
+
                                 <li class="current-list-item">
-                                    <a href="#">MEN'S FRAGRANCE</a>
-                                    <ul class="sub-menu">
-                                        @Html.Action("TypeProductMale", "Fragrance")
-                                    </ul>
-                                </li>
-                                <li class="current-list-item">
-                                    <a href="#">WOMEN'S FRAGRANCE</a>
-                                    <ul class="sub-menu">
-                                        @Html.Action("TypeProductFamale", "Fragrance")
-                                    </ul>
+                                    @Html.ActionLink("NEWS", "News", "Fragrance")
                                 </li>
                                 <li>
                                     <div class="header-icons">

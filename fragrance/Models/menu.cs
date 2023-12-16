@@ -8,7 +8,7 @@ using System.Web;
 
 namespace fragrance.Models
 {
-	public partial class menu
+	public class menu
 	{
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
 		public menu()
@@ -17,15 +17,17 @@ namespace fragrance.Models
 		}
 
 		[Key]
-		public int id_menu { get; set; }
+		public int Id { get; set; }
 
 		[Required]
 		[StringLength(100)]
-		[DisplayName("Type")]
-		public string name_menu { get; set; }
+		[DisplayName("Name")]
+		public string Name { get; set; }
+
+		public bool IsActive { get; set; }
 
 		[DisplayName("Created")]
-		public DateTime? created_at { get; set; } = DateTime.Now;
+		public DateTime Created { get; set; } = DateTime.Now;
 
 		public virtual ICollection<product_type> product_types { get; set; }
 	}

@@ -18,13 +18,37 @@ namespace fragrance.Controllers
 
         [HttpGet]
 
-        // GET: User
+        // GET: User7
         public ActionResult Register()
         {
             return View();
         }
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Register(UserEdit model)
+		{
+			if(ModelState.IsValid)
 
-        [HttpPost]
+			{
+				if (model.Password != model.ConfirmPassword)
+				{
+					ModelState.AddModelError("ConfirmPassword", "The password and confirm password do not match.");
+					return View(model);
+				}
+				var user = new acc_user();
+				user.name_user = model.Username;
+				user.email_user = model.Email;
+				user.phone_user = model.Phone;
+				user.created_at = DateTime.Now;
+				user.password_user = model.Password;
+                db.acc_user.Add(user);
+				db.SaveChanges();
+				return RedirectToAction("Login", "User");
+			}
+			return View(model);
+
+		}
+		/*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "id_user,name_user,email_user,phone_user,password_user,created_at")] acc_user acc_user)
         {
@@ -36,9 +60,9 @@ namespace fragrance.Controllers
             }
 
             return View(acc_user);
-        }
+        }*/
 
-        [HttpGet]
+		[HttpGet]
         public ActionResult Login()
         {
             return View();

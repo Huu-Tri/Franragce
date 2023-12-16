@@ -33,6 +33,8 @@ namespace fragrance.Models
         public int volume_pr { get; set; }
         [DisplayName("Price")]
         public decimal price_pr { get; set; }
+        [DisplayName("Price Origin")]
+        public decimal price_origin { get; set; }
         [DisplayName("Amount")]
         public int amount_pr { get; set; }
         [DisplayName("Desc")]

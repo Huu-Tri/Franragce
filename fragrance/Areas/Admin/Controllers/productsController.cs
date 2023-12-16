@@ -58,7 +58,8 @@ namespace fragrance.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_pr,name_pr,image_pr,volume_pr,price_pr,amount_pr,desc_pr,notes_pr,tips_pr,status_pr,id_pro_typeof,id_pro_coll,created_at")] product product, HttpPostedFileBase image_pr)
+        [ValidateInput(false)]
+        public ActionResult Create([Bind(Include = "id_pr,name_pr,image_pr,volume_pr,price_pr,price_origin,amount_pr,desc_pr,notes_pr,tips_pr,status_pr,id_pro_typeof,id_pro_coll,created_at")] product product, HttpPostedFileBase image_pr)
         {
             if (ModelState.IsValid)
             {
@@ -139,7 +140,7 @@ namespace fragrance.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_pr,name_pr,image_pr,volume_pr,price_pr,amount_pr,desc_pr,notes_pr,tips_pr,status_pr,id_pro_typeof,id_pro_coll,created_at")] product product, HttpPostedFileBase image_pr)
+        public ActionResult Edit([Bind(Include = "id_pr,name_pr,image_pr,volume_pr,price_pr,price_origin,amount_pr,desc_pr,notes_pr,tips_pr,status_pr,id_pro_typeof,id_pro_coll,created_at")] product product, HttpPostedFileBase image_pr)
         {
             if (ModelState.IsValid)
             {

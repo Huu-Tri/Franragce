@@ -33,13 +33,14 @@
                 <div class="d-flex flex-column justify-content-around">
                     <a href="@Url.Action("Product", "Fragrance", new { id = item.iPro })">
                         <h4 class="text-capitalize">@item.sNamepr</h4>
+
                     </a>
 
                     @using (Html.BeginForm("UpdateCart", "Carts", new { @iPro = item.iPro }))
                     {
                         <div>
                             <span style="font-size: 14px !important">
-                                Quantity: <input type="number" min="1" max="10" name="quantity" value="@item.iQuantity" />
+                                Quantity: <input type="number" min="1" name="quantity" value="@item.iQuantity" />
                             </span>
                             <br />
                             <span style="font-size: 14px !important">Price: @string.Format("{0:#,##0,0}", item.dPricepr)</span>
@@ -50,6 +51,7 @@
                             <button class="btn btn-outline-danger"><i class="bi bi-x"></i> @Html.ActionLink(" ", "DeleteProFromCart", new { @iPro = item.iPro }, new { @class = "a_href" })</button>
                             <button type="submit" class="btn btn-outline-info"><i class="bi bi-arrow-clockwise"></i></button>
                         </div>
+                        <p class="text-danger">@item.Message</p>
 
                     }
                 </div>
@@ -81,7 +83,6 @@
             @if (Session["User_Email"] != null)
             {
                 <div class="order_info d-flex justify-content-center">
-
                     <div class="order_info-info">
                         <h3 class="text-uppercase text-center">order infor</h3>
                         @using (Html.BeginForm("Order", "Carts"))
@@ -107,6 +108,17 @@
                             <div class="input_effect">
                                 <label class="label_input label_input-phone">Phone</label>
                                 <input class="cart_input cart_input-phone" type="tel" name="phone_order" placeholder="" />
+                            </div>
+                            <p class="label_input label_input-recevier">Payment Method</p>
+                            <div class="d-flex align-content-center justify-content-between">
+                                <div>
+                                    <label for="shipcod" class="label_input label_input-phone"><img src="https://cdn-icons-png.flaticon.com/512/2897/2897832.png" width="70" /></label>
+                                    <input id="shipcod" class="" value="shipcod" type="radio" name="payment_type" placeholder="" />
+                                </div>
+                                <div>
+                                    <label for="paypal" class="label_input label_input-phone"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" width="70" /></label>
+                                    <input id="paypal" class="" value="paypal" type="radio" name="payment_type" placeholder="" />
+                                </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button class="btn_order" type="submit">Order</button>

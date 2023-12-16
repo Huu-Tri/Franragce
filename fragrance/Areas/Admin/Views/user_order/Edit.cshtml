@@ -3,83 +3,116 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var listAction = Enum.GetNames(typeof(fragrance.DTO.OrderAction)).ToList();
 }
 
-<h2>Edit</h2>
+<h2 class="text-uppercase">Edit Order @Model.code</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>user_order</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_order)
+        <div class="d-flex">
+            <div class="form-group">
+                @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control text-uppercase" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.receiver_oder, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.receiver_oder, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.receiver_oder, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.receiver_oder, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.receiver_oder, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.receiver_oder, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.status_order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.status_order, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.status_order, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.address_order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.address_order, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.address_order, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.date_order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.date_order, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.date_order, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.phone_order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.phone_order, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phone_order, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group d-none">
+                @Html.LabelFor(model => model.id_order_user, "id_order_user", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_order_user", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_order_user, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.created_at, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
+        @*<div class="form-group">
+                <div class="col-md-10">
+                    @Html.DropDownList("actions", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.action_order, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.action_order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.action_order, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.action_order, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
         <div class="form-group">
-            @Html.LabelFor(model => model.status_order, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.status_order, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.status_order, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @Html.LabelFor(model => model.action_order, "Action", htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.address_order, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.address_order, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.address_order, "", new { @class = "text-danger" })
+            <div class="col-md-10 d-flex flex-column justify-content-center align-items-center">
+                <input type="range" value="@Model.action_order" name="action_order" id="action_order" min="0" max="@(listAction.Count-1)" style="width: 100%" />
+                <ul class="p-0 m-0 d-flex justify-content-between w-100 ">
+                    @foreach (var item in listAction)
+                    {
+                        <li style="list-style: none">
+                            <span class="position-absolute">@item</span>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
+        <br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.date_order, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.date_order, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.date_order, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.phone_order, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.phone_order, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.phone_order, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.action_order, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.action_order, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.action_order, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_order_user, "id_order_user", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_order_user", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_order_user, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.created_at, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -89,6 +122,40 @@
     </div>
 }
 
+@*@foreach (var item in Model.order_details)
+{
+    @item.product.name_pr
+    <br />
+}*@
+<h3 class="text-uppercase text-center my-4">List Product Order <span style="color: darkgoldenrod">@Model.code</span></h3>
+<div>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Curent Price</th>
+            <td>Quantity</td>
+            <th>Total</th>
+        </tr>
+        @foreach (var item in Model.order_details)
+        {
+            <tr>
+                <td>
+                    <p class="d-flex"><img src="~/Assets/Images/Products/@item.product.image_pr" style="width: 150px; height: 150px; object-fit: cover" /><a href="@Url.Action("Product","Fragrance", new { id = item.product.id_pr})"> @item.product.name_pr</a></p>
+                </td>
+                <td>
+                    <p>@item.product.price_pr</p>
+                </td>
+                <td>
+                    <p>@item.amount_order_dt</p>
+                </td>
+                <td>
+                    <p>@item.order_details_total</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

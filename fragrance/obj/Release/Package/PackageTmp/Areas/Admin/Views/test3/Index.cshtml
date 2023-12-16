@@ -1,0 +1,70 @@
+﻿@model IEnumerable<fragrance.Models.product_type>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.menu.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name_prt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image_prt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desc_prt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.forgender_prt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_prt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image_prt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.desc_prt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.forgender_prt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_prt }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_prt }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_prt })
+        </td>
+    </tr>
+}
+
+</table>

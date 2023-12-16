@@ -18,8 +18,9 @@ namespace fragrance.Areas.Admin.Controllers
         // GET: Admin/product_type
         public ActionResult Index()
         {
-            return View(db.product_type.ToList());
-        }
+			var product_type = db.product_type.Include(p => p.menu);
+			return View(product_type.ToList());
+		}
 
         // GET: Admin/product_type/Details/5
         public ActionResult Details(int? id)
@@ -39,7 +40,8 @@ namespace fragrance.Areas.Admin.Controllers
         // GET: Admin/product_type/Create
         public ActionResult Create()
         {
-            return View();
+			ViewBag.id_menu = new SelectList(db.menus, "Id", "Name");
+			return View();
         }
 
         // POST: Admin/product_type/Create
@@ -47,7 +49,7 @@ namespace fragrance.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_prt,name_prt,image_prt,desc_prt,forgender_prt,created_at")] product_type product_type, HttpPostedFileBase image_prt)
+        public ActionResult Create([Bind(Include = "id_prt,name_prt,image_prt,desc_prt,forgender_prt,created_at,id_menu")] product_type product_type, HttpPostedFileBase image_prt)
         {
             if (ModelState.IsValid)
             {
@@ -68,8 +70,8 @@ namespace fragrance.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(product_type);
+			ViewBag.id_menu = new SelectList(db.menus, "Id", "Name", product_type.id_menu);
+			return View(product_type);
         }
 
         // GET: Admin/product_type/Edit/5
@@ -84,7 +86,8 @@ namespace fragrance.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product_type);
+			ViewBag.id_menu = new SelectList(db.menus, "Id", "Name", product_type.id_menu);
+			return View(product_type);
         }
 
         // POST: Admin/product_type/Edit/5
@@ -92,7 +95,7 @@ namespace fragrance.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_prt,name_prt,image_prt,desc_prt,forgender_prt,created_at")] product_type product_type, HttpPostedFileBase image_prt)
+        public ActionResult Edit([Bind(Include = "id_prt,name_prt,image_prt,desc_prt,forgender_prt,created_at, id_menu")] product_type product_type, HttpPostedFileBase image_prt)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +116,8 @@ namespace fragrance.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product_type);
+			ViewBag.id_menu = new SelectList(db.menus, "Id", "Name", product_type.id_menu);
+			return View(product_type);
         }
 
         // GET: Admin/product_type/Delete/5

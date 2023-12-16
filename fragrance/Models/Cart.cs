@@ -13,6 +13,7 @@ namespace fragrance.Models
         public string sImagepr { get; set; }
         public double dPricepr { get; set; }
         public int iQuantity { get; set; }
+        public string Message { get; set; }
         public double dSumMoney
         {
             get { return iQuantity * dPricepr; }

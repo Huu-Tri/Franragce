@@ -28,7 +28,9 @@ namespace fragrance.Models
         [DisplayName("Desc")]
         public string desc_collect { get; set; }
 
-        [StringLength(500)]
+		public bool IsActive { get; set; }
+
+		[StringLength(500)]
         [DisplayName("Image")]
         public string image_collect { get; set; }
         [DisplayName("Created")]

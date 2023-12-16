@@ -4,12 +4,11 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="p-5 user_login">
-   
+<div class="breadcrumb-section news-bg-6 " style="height: 100vh">
 
     @using (Html.BeginForm("Login", "User", FormMethod.Post))
     {
-        <div class="row justify-content-center p-4">
+        <div class="row justify-content-center p-4 user_login">
             <div class="col col-sm col-md-6 col-lg-4 shadow p-5 bg-light">
                 <h2 class="text-uppercase text-center ">fragrance login</h2>
                 @Html.AntiForgeryToken()
@@ -23,7 +22,7 @@
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control p-2 border-0", @PlaceHolder = "Password" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group d-flex justify-content-between p-4">
+                <div class="form-group d-flex justify-content-between">
                     <button type="submit" class="btn btn-outline-dark">LOGIN</button>
                     <a class="btn btn-outline-dark" href="@Url.Action("Register", "User")">REGISTER</a>
                 </div>

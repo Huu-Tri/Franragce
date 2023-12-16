@@ -8,7 +8,7 @@ namespace fragrance.Models
     public partial class FragranceDbContext : DbContext
     {
         public FragranceDbContext()
-            : base("name=Fragrance")
+            : base("name=fruit_perfumer")
         {
         }
 
@@ -23,8 +23,10 @@ namespace fragrance.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user_order> user_order { get; set; }
         public virtual DbSet<message> messages { get; set; }
+		public virtual DbSet<menu> menus { get; set; }
+		public virtual DbSet<news> news { get; set; }
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<acc_user>()
                 .Property(e => e.name_user)

@@ -1,0 +1,17 @@
+﻿
+@model IEnumerable<fragrance.Models.menu>
+
+@foreach (var item in Model)
+{
+    <li class="current-list-item">
+        <a href="#" class="text-uppercase">@item.Name</a>
+        <ul class="sub-menu">
+            @foreach (var type in item.product_types)
+            {
+                <li>
+                    <a href="@Url.Action("TypeProduct","Fragrance", new { id = type.id_prt})">@type.name_prt</a>
+                </li>
+            }
+        </ul>
+    </li>
+}

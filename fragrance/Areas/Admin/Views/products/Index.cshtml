@@ -21,9 +21,9 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.collection_child.name_c_child)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.product_type.name_prt)
                         </th>
@@ -40,16 +40,10 @@
                             @Html.DisplayNameFor(model => model.price_pr)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.price_origin)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.amount_pr)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.desc_pr)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.notes_pr)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tips_pr)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.status_pr)
@@ -63,9 +57,9 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.collection_child.name_c_child)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.product_type.name_prt)
                         </th>
@@ -82,16 +76,10 @@
                             @Html.DisplayNameFor(model => model.price_pr)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.price_origin)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.amount_pr)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.desc_pr)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.notes_pr)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tips_pr)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.status_pr)
@@ -107,9 +95,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                           @* <td>
                                 @Html.DisplayFor(modelItem => item.collection_child.name_c_child)
-                            </td>
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.product_type.name_prt)
                             </td>
@@ -117,7 +105,7 @@
                                 @Html.DisplayFor(modelItem => item.name_pr)
                             </td>
                             <td>
-                                
+
                                 <img src="~/Assets/Images/Products/@item.image_pr" style="width:100px;" />
                             </td>
                             <td>
@@ -127,16 +115,10 @@
                                 @Html.DisplayFor(modelItem => item.price_pr)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.price_origin)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.amount_pr)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.desc_pr)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.notes_pr)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.tips_pr)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.status_pr)

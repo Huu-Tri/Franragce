@@ -1,9 +1,50 @@
 ﻿@model fragrance.Models.product
+@using HtmlAgilityPack
+
 
 @{
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<fragrance.Models.product> relateds = ViewBag.Related;
+    List<fragrance.DTO.SideMenu> items = new List<fragrance.DTO.SideMenu>();
+
+    HtmlDocument htmlDocument = new HtmlDocument();
+    htmlDocument.LoadHtml(Model.desc_pr);
+
+    var headings = htmlDocument.DocumentNode.SelectNodes("//h1|//h2|//h3|//h4|//h5|//h6");
+
+    if (headings != null)
+    {
+        for (int index = 0; index < headings.Count; index++)
+        {
+            var heading = headings[index];
+            var tagName = heading.Name.ToLower();
+            var id = "heading" + index;
+            string decodedInnerText = System.Net.WebUtility.HtmlDecode(heading.InnerText.Trim());
+            // Kiểm tra xem ID đã tồn tại hay chưa
+            if (!string.IsNullOrEmpty(id) && !items.Any(x => x.Id == id))
+            {
+                if (string.IsNullOrEmpty(heading.Id))
+                {
+
+                    heading.Attributes.Add("id", id);
+                }
+                else
+                {
+                    id = heading.Id;
+                }
+
+                items.Add(new fragrance.DTO.SideMenu { Id = id, Value = decodedInnerText });
+            }
+        }
+
+    }
+    else
+    {
+        // Xử lý khi không tìm thấy các tiêu đề
+        Console.WriteLine("Can't read headings");
+    }
+    string modifiedHtml = htmlDocument.DocumentNode.OuterHtml;
 }
 
 <div class="breadcrumb-section single-artcile-bg">
@@ -20,12 +61,12 @@
 </div>
 <!-- end breadcrumb section -->
 <!-- single product -->
-<div class="single-product mt-150 mb-150">
+<div class="single-product mt-50 mb-150">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <div class="single-product-img">
-                    <img src="~/Assets/Images/Products/@Html.DisplayFor(model => model.image_pr)" alt="">
+                <div>
+                    <img src="~/Assets/Images/Products/@Html.DisplayFor(model => model.image_pr)" alt="" class="w-100">
                 </div>
             </div>
             <div class="col-md-7">
@@ -35,7 +76,7 @@
                         <span>@Html.DisplayNameFor(model => model.volume_pr) @Html.DisplayFor(model => model.volume_pr)</span>
                         $@Html.FormatValue(Model.price_pr, "{0:#,##0}")
                     </p>
-                    <p>@Model.desc_pr</p>
+
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header text-uppercase">
@@ -65,9 +106,9 @@
                         </div>
                     </div>
                     <div class="single-product-form">
-                        <a  id="addtocart"
-                               href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })"
-                               role="button" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        <a id="addtocart"
+                           href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })"
+                           role="button" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         <p><strong>Categories: </strong>@Model.product_type.name_prt</p>
                     </div>
                     <h4>Share:</h4>
@@ -80,38 +121,72 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <ul class="sticky-top" style="list-style: none; top: 100px; z-index: 1">
+                    <li class="text-uppercase">contents</li>
+
+                    @foreach (var item in items)
+                    {
+                        <li class="border-bottom">
+                            <a href="#@item.Id"@* onclick="gotoHeading(@item.Id)"*@ >
+                                @item.Value
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-12 col-lg-9 postcontent">
+                @Html.Raw(modifiedHtml)
+            </div>
+        </div>
     </div>
 </div>
 <!-- end single product -->
 <!-- more products -->
-@if(relateds.Any())
+@if (relateds.Any())
 {
-<div class="more-products mb-150">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">
-                    <h3><span class="orange-text">Related</span> Products</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @foreach (var pro in relateds)
-            {
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a href="@Url.Action("Product","Fragrance", new { id = pro.id_pr})"><img src="~/Assets/Images/Products/@pro.image_pr" alt=""></a>
-                        </div>
-                        <h3>@pro.name_pr</h3>
-                        <p class="product-price"><span>@pro.volume_pr ml</span> @Html.FormatValue(pro.price_pr, "{0:#,##0}")$ </p>
-                        <a id="addtocart" href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+    <div class="more-products mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3><span class="orange-text">Related</span> Products</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
                     </div>
                 </div>
-            }
+            </div>
+            <div class="row">
+                @foreach (var pro in relateds)
+                {
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="@Url.Action("Product","Fragrance", new { id = pro.id_pr})"><img src="~/Assets/Images/Products/@pro.image_pr" alt=""></a>
+                            </div>
+                            <h3>@pro.name_pr</h3>
+                            <p class="product-price"><span>@pro.volume_pr ml</span> @Html.FormatValue(pro.price_pr, "{0:#,##0}")$ </p>
+                            <a id="addtocart" href="@Url.Action("AddCart", "Carts", new { ms = Model.id_pr, url = Request.Url.ToString() })" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
-</div>
+}
+@section scripts {
+    <script>
+        function gotoHeading(idHeading) {
+            var element = document.getElementById(idHeading);
+
+            if (element) {
+                var topOffset = element.offsetTop;
+                window.scrollTo({
+                    top: topOffset,
+                    behavior: "smooth"
+                });
+            }
+        }
+    </script>
 }
 <!-- end more products -->

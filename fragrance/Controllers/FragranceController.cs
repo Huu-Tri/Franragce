@@ -39,6 +39,7 @@ namespace fragrance.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.News = db.news.OrderBy(x => x.created_at).Take(3).ToList();
             var getproduct = GetProduct();
             return View(getproduct.Take(6).ToList());
         }
@@ -48,12 +49,28 @@ namespace fragrance.Controllers
             var products = db.product_type.Include(x => x.products).ToList();
 			return View(products);
 		}
-
-		public ActionResult SliderPartial()
+        public ActionResult News()
+        {
+            var news = db.news.Where(x => x.IsActive).ToList();
+            return View(news);
+        }
+        public ActionResult NewsDetail(int id)
+        {
+            var news = db.news.FirstOrDefault(x => x.IsActive && x.Id == id);
+            return View(news);
+        }
+        public ActionResult SliderPartial()
         {
             var listSph = GetHotProduct(10);
             return PartialView(listSph);
         }
+
+        public ActionResult Menus()
+        {
+            var menus = db.menus.Where(x => x.IsActive == true).Include(x => x.product_types).ToList();
+            return PartialView(menus);
+        }
+
         public ActionResult TypeProductFamale()
         {
             var type = from ty 
@@ -73,9 +90,7 @@ namespace fragrance.Controllers
         }
         public ActionResult TypeProduct(int id)
         {
-            var pr = from s in db.products
-                     where s.id_pro_typeof == id
-                     select s;
+            var pr = db.products.Where(x => x.id_pro_typeof == id).ToList();
             return View(pr.ToList());
         }
         public ActionResult Product(int id)

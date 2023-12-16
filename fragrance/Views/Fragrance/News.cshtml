@@ -1,0 +1,44 @@
+﻿@model IEnumerable<fragrance.Models.news>
+
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section homepage-bg-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Tin tức hằng ngày</p>
+                    <h1>Những bài viết mới nhất của chúng tôi</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<div class="latest-news mt-100 mb-150">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-news">
+                        <a href="@Url.Action("NewsDetail","Fragrance", new { id = item.Id})"><img src="~/Assets/Images/News/@item.Image" style="width: 100%; object-fit: cover" /></a>
+                        <div class="news-text-box">
+                            <h3><a href="@Url.Action("NewsDetail","Fragrance", new { id = item.Id})">@item.Title.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> @item.created_at.Value.ToString("dd-MM-yyyy")</span>
+                            </p>
+                            @*<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>*@
+                            <a href="@Url.Action("NewsDetail","Fragrance", new { id = item.Id})" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- end latest news -->

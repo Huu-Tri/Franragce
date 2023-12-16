@@ -22,6 +22,9 @@
                 <thead>
                     <tr>
                         <th>
+                            @Html.DisplayNameFor(model => model.code)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.acc_user.name_user)
                         </th>
                         <th>
@@ -50,6 +53,9 @@
                 </thead>
                 <tfoot>
                     <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.code)
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.acc_user.name_user)
                         </th>
@@ -82,6 +88,9 @@
                     {
                         <tr>
                             <td>
+                                @Html.DisplayFor(modelItem => item.code)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.acc_user.name_user)
                             </td>
                             <td>
@@ -100,7 +109,7 @@
                                 @Html.DisplayFor(modelItem => item.phone_order)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.action_order)
+                                @(((fragrance.DTO.OrderAction)item.action_order).ToString()) @item.action_order
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.created_at)

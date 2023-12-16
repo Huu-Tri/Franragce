@@ -21,7 +21,7 @@
 <!-- end breadcrumb section -->
 
 <!-- products -->
-<div class="product-section mt-150 mb-150">
+<div class="product-section mt-50 mb-150">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -30,7 +30,7 @@
                         <li class="active" data-filter="*">All</li>
                         @foreach (var item in Model)
                         {
-                            <li data-filter=".@item.name_prt">@item.name_prt</li>
+                            <li data-filter=".@item.name_prt.Replace(" ", "")">@item.name_prt</li>
                         }
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
             if (item.products.Any())
             {
                 <div class="row product-lists">
-                    <div class="row @item.name_prt">
+                    <div class="row @item.name_prt.Replace(" ", "")">
                         <div class="col-lg-8 offset-lg-2 text-center">
                             <div class="section-title">
                                 <h3><span class="orange-text">@item.name_prt</span></h3>
@@ -54,7 +54,7 @@
                 <div class="row product-lists">
                     @foreach (var pro in item.products)
                     {
-                        <div class="col-lg-4 col-md-6 text-center @item.name_prt">
+                        <div class="col-lg-4 col-md-6 text-center @item.name_prt.Replace(" ", "")">
                             <div class="single-product-item">
                                 <div class="product-image">
                                     <a href="@Url.Action("Product","Fragrance", new { id = pro.id_pr})"><img src="~/Assets/Images/Products/@pro.image_pr" alt=""></a>
